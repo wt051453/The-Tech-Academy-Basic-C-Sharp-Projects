@@ -22,15 +22,19 @@ namespace LambdaExercise
             employees.Add(new Employee { FirstName = "Fanny", LastName = "May", Id = 9 });
             employees.Add(new Employee { FirstName = "Jane", LastName = "Doe", Id = 10 });
 
+            List<Employee> Templist = new List<Employee>();
             foreach (var employee in employees)
             {
 
                 if (employee.FirstName == "Joe")
                 {
-                    List<Employee>Templist = new List<Employee>();
                     Templist.Add(employee);
-                    Console.WriteLine(employee.FirstName + employee.LastName + employee.Id);
                 }
+            }
+            
+            foreach (Employee employee in Templist)
+            {
+                Console.WriteLine(employee.FirstName);
             }
 
             List<Employee> joe = employees.Where(x => x.FirstName == "Joe").ToList();
