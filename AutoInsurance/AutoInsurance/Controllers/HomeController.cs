@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoInsurance.Models;
 
@@ -16,35 +11,93 @@ namespace AutoInsurance.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AutoQuote(string firstName, string lastName, string emailAddress, string dateofBirth, string carYear, string carMake, string carModel, string dUI, string speedTicket, string coverage)
+        public ActionResult CreateUser(string firstName, string lastName, string emailAddress, DateTime dateofBirth, int carYear, string carMake, string carModel, int dUI, int speedTicket, string coverage)
         {
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(emailAddress) || string.IsNullOrEmpty(dateofBirth) || string.IsNullOrEmpty(carYear) || string.IsNullOrEmpty(carMake) || string.IsNullOrEmpty(carModel) || string.IsNullOrEmpty(dUI) || string.IsNullOrEmpty(speedTicket) || string.IsNullOrEmpty(coverage))
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(emailAddress) || string.IsNullOrEmpty(dateofBirth.ToString()) || string.IsNullOrEmpty(carYear.ToString()) || string.IsNullOrEmpty(carMake) || string.IsNullOrEmpty(carModel) || string.IsNullOrEmpty(dUI.ToString()) || string.IsNullOrEmpty(speedTicket.ToString()) || string.IsNullOrEmpty(coverage))
             {
                 return View("~Views/Shared/Error.cshtml");
             }
             else
             {
-                using (AutoInsuranceEntities db = new AutoInsuranceEntities())
-                {
-                    var autoInsuranceQuote = new AutoQuote();
-                    autoInsuranceQuote.FirstName = firstName;
-                    autoInsuranceQuote.LastName = lastName;
-                    autoInsuranceQuote.EmailAddress = emailAddress;
-                    autoInsuranceQuote.DateofBirth = dateofBirth;
-                    autoInsuranceQuote.CarYear = carYear;
-                    autoInsuranceQuote.CarMake = carMake;
-                    autoInsuranceQuote.CarModel = carModel;
-                    autoInsuranceQuote.DUI = dUI;
-                    autoInsuranceQuote.SpeedTicket = speedTicket;
-                    autoInsuranceQuote.Coverage = coverage;
 
-                    db.AutoQuotes.Add(autoInsuranceQuote);
+                using (AutoInsuranceEntities1 db = new AutoInsuranceEntities1())
+                {
+                    var user = new CreateUser();
+                    user.FirstName = firstName;
+                    user.LastName = lastName;
+                    user.EmailAddress = emailAddress;
+                    user.DateofBirth = dateofBirth;
+                    user.CarYear = carYear;
+                    user.CarMake = carMake;
+                    user.CarModel = carModel;
+                    user.DUI = dUI;
+                    user.SpeedTicket = speedTicket;
+                    user.Coverage = coverage;
+                    user.Quote = GenerateQuotes(dateofBirth, carYear, carMake, carModel, dUI, speedTicket, coverage);
+
+                    db.CreateUsers.Add(user);
                     db.SaveChanges();
 
                 }
-                
+
+
+
                 return View("Success");
             }
         }
+        public double GenerateQuotes(DateTime dateofBirth, int carYear, string carMake, string carModel, int dUI, int speedTicket, string coverage)
+        {
+            int quote = 50;
+
+            DateTime birth = DateTime.Parse(dateofBirth.ToString());
+            DateTime today = DateTime.Today;
+            TimeSpan years = today - birth;
+            double ageInDays = years.TotalDays;
+            double daysInYear = 365.2425;
+            int age = Convert.ToInt32(ageInDays / daysInYear);
+
+            if (age < 18)
+            {
+                quote = quote + 100;
+            }
+            else if (age < 25 || age > 100)
+            {
+                quote = quote + 25;
+            }
+
+            if (carYear < 2000 || carYear > 2015)
+            {
+                quote = quote + 25;
+            }
+
+            if (carMake == "Porsche" && carModel == "911 Carrera")
+            {
+                if (carMake == "Porsche" || carMake == "porsche")
+                {
+                    quote = quote + 25;
+                }
+                    quote = quote + 50;
+            }
+
+            if (speedTicket > 0)
+            {
+                quote = quote + 10 * speedTicket;
+            }
+
+            if (dUI > 0)
+            {
+                quote = Convert.ToInt32(quote * 1.25);
+            }
+
+            if (coverage == "full coverage")
+            {
+                quote = Convert.ToInt32(quote * 1.5);
+            }
+
+            return (quote);
+        }
+
     }
+
+
 }
