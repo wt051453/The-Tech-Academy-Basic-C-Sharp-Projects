@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AutoInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AutoQuotes">
+      <Schema Namespace="AutoInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CreateUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -13,22 +13,24 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
-          <Property Name="DateofBirth" Type="varchar" MaxLength="100" />
-          <Property Name="CarYear" Type="varchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="CarYear" Type="int" />
           <Property Name="CarMake" Type="varchar" MaxLength="50" />
           <Property Name="CarModel" Type="varchar" MaxLength="50" />
-          <Property Name="DUI" Type="varchar" MaxLength="50" />
-          <Property Name="SpeedTicket" Type="varchar" MaxLength="50" />
+          <Property Name="DUI" Type="int" />
+          <Property Name="SpeedTicket" Type="int" />
           <Property Name="Coverage" Type="varchar" MaxLength="50" />
+          <Property Name="Quote" Type="float" />
         </EntityType>
         <EntityContainer Name="AutoInsuranceModelStoreContainer">
-          <EntitySet Name="AutoQuotes" EntityType="Self.AutoQuotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreateUsers" EntityType="Self.CreateUsers" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AutoInsuranceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AutoQuote">
+        <EntityType Name="CreateUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -36,26 +38,27 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateofBirth" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CarYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="CarYear" Type="Int32" />
           <Property Name="CarMake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DUI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SpeedTicket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUI" Type="Int32" />
+          <Property Name="SpeedTicket" Type="Int32" />
           <Property Name="Coverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quote" Type="Double" />
         </EntityType>
-        <EntityContainer Name="AutoInsuranceEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AutoQuotes" EntityType="Self.AutoQuote" />
+        <EntityContainer Name="AutoInsuranceEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CreateUsers" EntityType="Self.CreateUser" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AutoInsuranceModelStoreContainer" CdmEntityContainer="AutoInsuranceEntities">
-          <EntitySetMapping Name="AutoQuotes">
-            <EntityTypeMapping TypeName="AutoInsuranceModel.AutoQuote">
-              <MappingFragment StoreEntitySet="AutoQuotes">
+        <EntityContainerMapping StorageEntityContainer="AutoInsuranceModelStoreContainer" CdmEntityContainer="AutoInsuranceEntities2">
+          <EntitySetMapping Name="CreateUsers">
+            <EntityTypeMapping TypeName="AutoInsuranceModel.CreateUser">
+              <MappingFragment StoreEntitySet="CreateUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -67,6 +70,7 @@
                 <ScalarProperty Name="DUI" ColumnName="DUI" />
                 <ScalarProperty Name="SpeedTicket" ColumnName="SpeedTicket" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="Quote" ColumnName="Quote" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,10 +13,10 @@ namespace AutoInsurance.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AutoInsuranceEntities : DbContext
+    public partial class AutoInsuranceEntities2 : DbContext
     {
-        public AutoInsuranceEntities()
-            : base("name=AutoInsuranceEntities")
+        public AutoInsuranceEntities2()
+            : base("name=AutoInsuranceEntities2")
         {
         }
     
@@ -25,6 +25,6 @@ namespace AutoInsurance.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AutoQuote> AutoQuotes { get; set; }
+        public virtual DbSet<CreateUser> CreateUsers { get; set; }
     }
 }

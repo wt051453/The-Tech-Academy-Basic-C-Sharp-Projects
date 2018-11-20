@@ -20,7 +20,7 @@ namespace AutoInsurance.Controllers
             else
             {
 
-                using (AutoInsuranceEntities1 db = new AutoInsuranceEntities1())
+                using (AutoInsuranceEntities2 db = new AutoInsuranceEntities2())
                 {
                     var user = new CreateUser();
                     user.FirstName = firstName;
@@ -37,12 +37,12 @@ namespace AutoInsurance.Controllers
 
                     db.CreateUsers.Add(user);
                     db.SaveChanges();
-
+                    ViewBag.Message = "Your quote is " + "$" + user.Quote + ".";
+                    return View("Success");
                 }
 
 
-
-                return View("Success");
+                
             }
         }
         public double GenerateQuotes(DateTime dateofBirth, int carYear, string carMake, string carModel, int dUI, int speedTicket, string coverage)
@@ -58,30 +58,30 @@ namespace AutoInsurance.Controllers
 
             if (age < 18)
             {
-                quote = quote + 100;
+                quote += 100;
             }
             else if (age < 25 || age > 100)
             {
-                quote = quote + 25;
+                quote += 25;
             }
 
             if (carYear < 2000 || carYear > 2015)
             {
-                quote = quote + 25;
+                quote += 25;
             }
 
-            if (carMake == "Porsche" && carModel == "911 Carrera")
+            if (carMake == "Porsche" || carMake == "porsche" && carModel == "911 Carrera")
             {
                 if (carMake == "Porsche" || carMake == "porsche")
                 {
-                    quote = quote + 25;
+                    quote += 25;
                 }
-                    quote = quote + 50;
+                    quote += 50;
             }
 
             if (speedTicket > 0)
             {
-                quote = quote + 10 * speedTicket;
+                quote += 10 * speedTicket;
             }
 
             if (dUI > 0)
