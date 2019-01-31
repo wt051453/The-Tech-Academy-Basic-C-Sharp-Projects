@@ -14,7 +14,7 @@ namespace OverloadOperator
             n.Id = 1001;
 
             Employee n1 = new Employee();
-            n.Id = 1002;
+            n.Id = 1001;
 
             Console.WriteLine(n == n1);
             Console.ReadLine();

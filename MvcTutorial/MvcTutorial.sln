@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTutorial", "MvcTutorial\MvcTutorial.csproj", "{B2034C18-927E-4F2C-9CF7-007A2601ADDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2034C18-927E-4F2C-9CF7-007A2601ADDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2034C18-927E-4F2C-9CF7-007A2601ADDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2034C18-927E-4F2C-9CF7-007A2601ADDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2034C18-927E-4F2C-9CF7-007A2601ADDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B72799B6-F138-4B0B-B58E-CC109F754151}
+	EndGlobalSection
+EndGlobal

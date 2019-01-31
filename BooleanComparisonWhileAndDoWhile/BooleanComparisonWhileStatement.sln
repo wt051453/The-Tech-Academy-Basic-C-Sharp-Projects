@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanComparisonWhileStatement", "BooleanComparisonWhileAndDoWhile\BooleanComparisonWhileStatement.csproj", "{E2E30CDD-637E-4071-B708-5346A9EF2000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2E30CDD-637E-4071-B708-5346A9EF2000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E30CDD-637E-4071-B708-5346A9EF2000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E30CDD-637E-4071-B708-5346A9EF2000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E30CDD-637E-4071-B708-5346A9EF2000}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFBAE360-60D7-4E53-B285-2CA2A12C0712}
+	EndGlobalSection
+EndGlobal
